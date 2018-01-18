@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/QYXCQ"/>
+    <qresource prefix="/linguist">
+        <file>qyxcq_zh.qm</file>
+    </qresource>
+</RCC>
