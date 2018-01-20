@@ -1,5 +1,5 @@
-#include "cardOverViewDialog.h"
-#include "Engine.h"
+#include "cardoverviewdialog.h"
+#include "engine.h"
 
 CardOverViewDialog::CardOverViewDialog(QWidget * parent)
 : QDialog(parent){

@@ -1,5 +1,8 @@
 #include "QYXCQ.h"
-#include "Engine.h"
+#include "engine.h"
+
+#include "carditem.h"
+#include "package.h"
 
 QYXCQ* QYXCQWindow = NULL;
 
@@ -37,20 +40,29 @@ QYXCQ::QYXCQ(QWidget *parent)
 
     gamescene = new QGraphicsScene();
 
-    gamescene->setSceneRect(-width/2,-height/2,width-100,height-100);
+    //gamescene->setSceneRect(0,0,width-100,height-100);
 
     gameview->setScene(gamescene);
 
     setCentralWidget(gameview);
 
-    QRectF rt = gameview->sceneRect();
-
-    //qDebug() << rt.size();
-
+    //qDebug() <<rt;
     dashboard = new DashBoard();
-    dashboard->setPos(0,rt.height()-dashboard->boundingRect().height());
+
+
+    //dashboard->setPos(0,rt.height()-dashboard->boundingRect().height());
+
+    dashboard->setPos(0,(height-200)/2);
 
     gamescene->addItem(dashboard);
+
+
+    CardPackage* package = new CardPackage();
+    CardItem* carditem = new CardItem(package->cards[1],dashboard);
+
+
+
+
 
 	
 //    connect(ui.startButton, SIGNAL(clicked()), startDialog, SLOT(exec()));

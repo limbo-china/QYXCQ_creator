@@ -3,7 +3,7 @@
 
 #include "QtHeader.h"
 #include "player.h"
-#include "Package.h"
+#include "package.h"
 
 class GameCore :public QObject{
 

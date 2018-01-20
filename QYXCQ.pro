@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core network declarative widgets gui qml quick
+QT       += core network widgets gui qml quick
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -17,28 +17,30 @@ DESTDIR = ../QYXCQ
 
 SOURCES += main.cpp\
         qyxcq.cpp \
-    Card.cpp \
-    cardOverViewDialog.cpp \
-    Engine.cpp \
     gamecore.cpp \
-    Package.cpp \
     player.cpp \
-    startDialog.cpp \
-    dashboard.cpp
+    dashboard.cpp \
+    carditem.cpp \
+    card.cpp \
+    cardoverviewdialog.cpp \
+    engine.cpp \
+    package.cpp \
+    startdialog.cpp
 
 HEADERS  += qyxcq.h \
-    cardOverViewDialog.h \
-    Engine.h \
     gamecore.h \
-    Package.h \
     player.h \
     QtHeader.h \
-    startDialog.h \
-    Card.h \
     ui_cardOverView.h \
     ui_QYXCQ.h \
     ui_startDialog.h \
-    dashboard.h
+    dashboard.h \
+    carditem.h \
+    card.h \
+    cardoverviewdialog.h \
+    engine.h \
+    package.h \
+    startdialog.h
 
 FORMS    += qyxcq.ui \
     cardOverView.ui \

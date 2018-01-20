@@ -1,5 +1,5 @@
-#include "startDialog.h"
-#include "Engine.h"
+#include "startdialog.h"
+#include "engine.h"
 
 
 StartDialog::StartDialog(QWidget *parent)

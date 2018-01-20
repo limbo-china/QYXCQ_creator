@@ -2,7 +2,7 @@
 #define PACKAGE_H
 
 #include "QtHeader.h"
-#include "Card.h"
+#include "card.h"
 
 
 class Package : public QObject{

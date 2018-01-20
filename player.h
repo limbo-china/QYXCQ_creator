@@ -2,7 +2,7 @@
 #define PLAYER_H
 
 #include "QtHeader.h"
-#include "Card.h"
+#include "card.h"
 
 
 class Player :public QObject{

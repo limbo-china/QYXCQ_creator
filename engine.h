@@ -1,7 +1,7 @@
 #ifndef ENGINE_H
 #define ENGINE_H
 
-#include "Package.h"
+#include "package.h"
 #include "QtHeader.h"
 #include "gamecore.h"
 

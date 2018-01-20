@@ -1,4 +1,4 @@
-#include "Card.h"
+#include "card.h"
 
 Card::Card(){}
 Card::Card(QString suit, QString type, QString p)

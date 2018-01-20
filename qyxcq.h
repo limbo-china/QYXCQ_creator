@@ -3,8 +3,8 @@
 
 #include "QtHeader.h"
 #include "ui_QYXCQ.h"
-#include "startDialog.h"
-#include "cardOverViewDialog.h"
+#include "startdialog.h"
+#include "cardoverviewdialog.h"
 #include "dashboard.h"
 
 class QYXCQ : public QMainWindow
