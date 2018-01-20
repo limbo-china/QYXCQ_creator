@@ -33,10 +33,10 @@ CardOverViewDialog::CardOverViewDialog(QWidget * parent)
 			suit->setIcon(club);
 		else
 			suit->setIcon(diamond);
-		ui.tableWidget->setItem(i, 0, name);
-		ui.tableWidget->setItem(i, 1, suit);
-		ui.tableWidget->setItem(i, 2, point);
-		ui.tableWidget->setItem(i, 3, type);
+        ui.tableWidget->setItem(i, 0, name);
+        ui.tableWidget->setItem(i, 1, suit);
+        ui.tableWidget->setItem(i, 2, point);
+        ui.tableWidget->setItem(i, 3, type);
 	}
 
 }

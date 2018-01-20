@@ -14,12 +14,6 @@ QYXCQ::QYXCQ(QWidget *parent)
 
 	setWindowTitle(tr("yingxiongchuanqi") + " " + "V1.1");
 
-	debuglabel = new QLabel;
-	debuglabel->setMinimumSize(debuglabel->sizeHint());
-	statusBar()->addWidget(debuglabel);
-
-	gamescene = NULL;
-
 	startAction = new QAction(tr("Start"),this);
     connect(startAction, SIGNAL(triggered()), this, SLOT(tri_startAction()));
 	gameMenu = menuBar()->addMenu(tr("Game"));
@@ -31,46 +25,41 @@ QYXCQ::QYXCQ(QWidget *parent)
 	helpMenu = menuBar()->addMenu(tr("Help"));
 	helpMenu->addAction(cardOverViewAction);
 
+
+}
+QYXCQ::~QYXCQ()
+{
+
+}
+void QYXCQ::gameSceneInit(){
+
     gameview = new QGraphicsView();
 
     qreal width = 1920*0.9;
     qreal height = 1080*0.9;
 
     gameview->setSceneRect(-width/2,-height/2,width,height);
-
     gamescene = new QGraphicsScene();
-
-    //gamescene->setSceneRect(0,0,width-100,height-100);
-
     gameview->setScene(gamescene);
-
     setCentralWidget(gameview);
-
-    //qDebug() <<rt;
-    dashboard = new DashBoard();
-
-
+    dashboard1 = new DashBoard();
+    dashboard2 = new DashBoard();
     //dashboard->setPos(0,rt.height()-dashboard->boundingRect().height());
+    dashboard1->setPos(0,(height-220)/2);
+    dashboard2->setPos(0,(220-height)/2);
+    gamescene->addItem(dashboard1);
+    gamescene->addItem(dashboard2);
 
-    dashboard->setPos(0,(height-200)/2);
-
-    gamescene->addItem(dashboard);
-
-
-    CardPackage* package = new CardPackage();
-    CardItem* carditem = new CardItem(package->cards[1],dashboard);
-
-
-
-
-
-	
-//    connect(ui.startButton, SIGNAL(clicked()), startDialog, SLOT(exec()));
-//    connect(ui.cardViewButton, SIGNAL(clicked()), cardOverViewDialog, SLOT(exec()));
 }
-QYXCQ::~QYXCQ()
-{
+void QYXCQ::dealCardInit(QList<Player*>& players){
 
+    Player* player1 = players[0];
+    Player* player2 = players[1];
+
+    foreach(Card* c, player1->m_cards)
+        dashboard1->addOneCardItem(c);
+    foreach(Card* c, player2->m_cards)
+        dashboard2->addOneCardItem(c);
 }
 
 void QYXCQ::tri_startAction(){

@@ -6,6 +6,7 @@
 #include "startdialog.h"
 #include "cardoverviewdialog.h"
 #include "dashboard.h"
+#include "player.h"
 
 class QYXCQ : public QMainWindow
 {
@@ -15,8 +16,8 @@ public:
 	QYXCQ(QWidget *parent = Q_NULLPTR);
 	~QYXCQ();
 
-	QLabel* debuglabel;
-
+        void gameSceneInit();
+        void dealCardInit(QList<Player*>&);
 	Ui::QYXCQClass getUi(){ return ui; }
 	
 
@@ -37,7 +38,8 @@ private:
 	QGraphicsScene* gamescene;
 	QGraphicsView* gameview;
 
-    DashBoard* dashboard;
+        DashBoard* dashboard1;
+        DashBoard* dashboard2;
 
 	private slots:
 	

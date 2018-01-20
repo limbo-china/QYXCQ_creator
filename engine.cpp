@@ -20,7 +20,12 @@ void Engine::updateRemainDiscard(){
 void Engine::startGameCore(QString character){
 
 	//QYXCQWindow->getUi().menuGroupBox->setVisible(false);
-	gamecore->startGame(character);
+
+    QYXCQWindow->gameSceneInit();
+
+    gamecore->startGame(character);
+
+    QYXCQWindow->dealCardInit(gamecore->getPlayers());
 }
 CardPackage* Engine::getCardPack(){
 	return cardpack;

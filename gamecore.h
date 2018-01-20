@@ -12,11 +12,10 @@ class GameCore :public QObject{
 public:
 
 	GameCore(int players = 2);
-	void startGame(QString character);
-	void generatePlayerBoard(QList<Player* >*);
-	void boardInit(QList<Player* >&);
+    void startGame(QString character);
 	void shuffleCards();
 	void dealCards();
+    QList<Player* >& getPlayers(){return players;}
 
 	QList<Card* > remaincards;
 	QList<Card* > discardedcards;

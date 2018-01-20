@@ -17,7 +17,7 @@ QCoreApplicaiton::translator()  和 tr()对此项目而言，效果是一样的�
 
 - QYXCQ::QYXCQ
 
-控件隐式的链接signal和slot，若显性手动连接时也按照隐性的格式写slot，则会报no match错误。
+控件隐式的链接signal和slot，若显性手动连接时也按照隐性的格式写slot，则会报no match。
 
 - DashBoard:QGraphicsItem
 
@@ -34,3 +34,9 @@ w->setPos(x,y), 把w本地坐标系的原点放在父坐标系的x,y点。
 
 ## 2018-01-17 ##
 信号只要声明不要设计其的实现函数
+
+- CardItem.h
+
+QGraphicsItem不能使用slot,signal机制，可以使用其子类QGraphicsObject, 几乎和QGraphicsItem一样，只是允许使用slot,signal机制
+
+必须先重写mousePressEvent事件，mouseReleaseEvent事件才会响应
