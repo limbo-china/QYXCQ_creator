@@ -19,13 +19,13 @@ void Engine::updateRemainDiscard(){
 }
 void Engine::startGameCore(QString character){
 
-	//QYXCQWindow->getUi().menuGroupBox->setVisible(false);
-
-    QYXCQWindow->gameSceneInit();
 
     gamecore->startGame(character);
 
-    QYXCQWindow->dealCardInit(gamecore->getPlayers());
+    QYXCQWindow->gameSceneInit();
+    QYXCQWindow->addPlayersToBoard(gamecore->getPlayers());
+
+    QYXCQWindow->dealCardInit();
 }
 CardPackage* Engine::getCardPack(){
 	return cardpack;

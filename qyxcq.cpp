@@ -51,14 +51,17 @@ void QYXCQ::gameSceneInit(){
     gamescene->addItem(dashboard2);
 
 }
-void QYXCQ::dealCardInit(QList<Player*>& players){
+void QYXCQ::addPlayersToBoard(QList<Player* >& players){
 
-    Player* player1 = players[0];
-    Player* player2 = players[1];
+    dashboard1->setPlayer(players[0]);
+    dashboard2->setPlayer(players[1]);
+}
 
-    foreach(Card* c, player1->m_cards)
+void QYXCQ::dealCardInit(){
+
+    foreach(Card* c, dashboard1->player()->m_cards)
         dashboard1->addOneCardItem(c);
-    foreach(Card* c, player2->m_cards)
+    foreach(Card* c, dashboard2->player()->m_cards)
         dashboard2->addOneCardItem(c);
 }
 

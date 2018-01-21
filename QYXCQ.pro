@@ -25,7 +25,8 @@ SOURCES += main.cpp\
     cardoverviewdialog.cpp \
     engine.cpp \
     package.cpp \
-    startdialog.cpp
+    startdialog.cpp \
+    custombutton.cpp
 
 HEADERS  += qyxcq.h \
     gamecore.h \
@@ -40,7 +41,8 @@ HEADERS  += qyxcq.h \
     cardoverviewdialog.h \
     engine.h \
     package.h \
-    startdialog.h
+    startdialog.h \
+    custombutton.h
 
 FORMS    += qyxcq.ui \
     cardOverView.ui \

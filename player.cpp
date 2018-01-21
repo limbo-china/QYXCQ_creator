@@ -35,16 +35,16 @@ void Player::getOneCard(Card* c){
 //	QYXCQEngine->updateRemainDiscard();
 
 //}
-//void Player::playOutOneCard(int r){
+void Player::playOutOneCard(int r){
 
-//	QList<Card* >& discard = QYXCQEngine->gamecore->discardedcards;
+    QList<Card* >& discard = QYXCQEngine->gamecore->discardedcards;
 
-//	discard << m_cards[r];
-//	m_cards.removeAt(r);
+    discard << m_cards[r];
+    m_cards.removeAt(r);
 
-//	//调试用,出一张牌自动拿一张牌
-//	getOneCard(QYXCQEngine->gamecore->getTopCardFromRemain());
+    //调试用,出一张牌自动拿一张牌
+    //getOneCard(QYXCQEngine->gamecore->getTopCardFromRemain());
 
 
-//	cardnumlabel->setText(QString::number(m_cards.length()));
-//}
+    //cardnumlabel->setText(QString::number(m_cards.length()));
+}

@@ -17,7 +17,8 @@ public:
 	~QYXCQ();
 
         void gameSceneInit();
-        void dealCardInit(QList<Player*>&);
+        void dealCardInit();
+        void addPlayersToBoard(QList<Player* >&);
 	Ui::QYXCQClass getUi(){ return ui; }
 	
 

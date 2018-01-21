@@ -1,16 +1,16 @@
-#ifndef CARDITEM_H
-#define CARDITEM_H
+#ifndef CUSTOMBUTTON_H
+#define CUSTOMBUTTON_H
 
 #include "QtHeader.h"
-#include "card.h"
 
-class CardItem : public QGraphicsObject
+
+class CustomButton : public QGraphicsObject
 {
 
-    Q_OBJECT
+     Q_OBJECT
 
 public:
-    CardItem(Card* c, QGraphicsItem* parent = Q_NULLPTR);
+    CustomButton(QString, QGraphicsItem* parent = Q_NULLPTR);
 
     QRectF boundingRect() const;
     void paint(QPainter* painter,const QStyleOptionGraphicsItem *option, QWidget * widget = 0);
@@ -22,17 +22,11 @@ protected:
 
 private:
 
-    Card* m_card;
-
-private slots:
-
-    void on_clicked();
+    QImage m_image;
 
 signals:
 
     void clicked();
-
-
 };
 
-#endif // CARDITEM_H
+#endif // CUSTOMBUTTON_H

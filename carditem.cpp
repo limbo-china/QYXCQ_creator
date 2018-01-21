@@ -2,8 +2,8 @@
 
 CardItem::CardItem(Card* c, QGraphicsItem* parent):QGraphicsObject(parent), m_card(c)
 {
-
-        isselect =false;
+        setFlag(GraphicsItemFlag::ItemIsSelectable);
+        setSelected(false);
         connect(this, SIGNAL(clicked()), this, SLOT(on_clicked()));
 }
 
@@ -28,7 +28,8 @@ void CardItem::paint(QPainter* painter, const QStyleOptionGraphicsItem *option, 
 void CardItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
 
     emit clicked();
-    isselect = !isselect;
+    setSelected(!isSelected());
+
 }
 void CardItem::mousePressEvent(QGraphicsSceneMouseEvent *event){
 
@@ -36,7 +37,7 @@ void CardItem::mousePressEvent(QGraphicsSceneMouseEvent *event){
 
 void CardItem::on_clicked(){
 
-    if(isselect)
+    if(isSelected())
         setPos(pos().x(), pos().y()+40);
     else
         setPos(pos().x(), pos().y()-40);
