@@ -6,6 +6,8 @@
 #include "carditem.h"
 #include "player.h"
 #include "custombutton.h"
+#include "customlabel.h"
+#include "gamescene.h"
 
 class DashBoard : public QGraphicsObject{
 
@@ -18,15 +20,18 @@ public:
     void addOneCardItem(Card* c);
     Player* player(){ return m_player;}
     void setPlayer(Player* p){ m_player = p;}
+    void removeACardItem(int i);
 
     void paint(QPainter* painter,const QStyleOptionGraphicsItem *option, QWidget * widget = 0);
 
 private:
 
-    int carditemnum;
     Player* m_player;
+    QList<QGraphicsItem* > m_carditems;
     CustomButton* okButton;
     CustomButton* cancelButton;
+    CustomLabel* bloodLabel;
+    CustomLabel* cardnumLabel;
 
 private slots:
 

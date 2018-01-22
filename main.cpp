@@ -1,4 +1,3 @@
-#include "engine.h"
 #include "QYXCQ.h"
 
 int main(int argc, char *argv[])
@@ -13,10 +12,8 @@ int main(int argc, char *argv[])
 
 	//QString s = qt_translator.translate("ɱ", "slash");
 
-    QYXCQEngine = new Engine();
 
     QYXCQWindow = new QYXCQ();
-    QYXCQEngine->setParent(QYXCQWindow);
 
     QYXCQWindow->show();
 

@@ -1,5 +1,5 @@
 #include "startdialog.h"
-#include "engine.h"
+#include "qyxcq.h"
 
 
 StartDialog::StartDialog(QWidget *parent)
@@ -19,7 +19,7 @@ StartDialog::StartDialog(QWidget *parent)
 		connect(buttons[i], SIGNAL(clicked()), this, SLOT(accept()));
 	}
 
-	connect(mapper, SIGNAL(mapped(QString)), QYXCQEngine, SLOT(startGameCore(QString)));
+    connect(mapper, SIGNAL(mapped(QString)), QYXCQWindow, SLOT(startGame(QString)));
 }
 StartDialog::~StartDialog()
 {

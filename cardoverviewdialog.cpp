@@ -1,12 +1,11 @@
 #include "cardoverviewdialog.h"
-#include "engine.h"
 
 CardOverViewDialog::CardOverViewDialog(QWidget * parent)
 : QDialog(parent){
 
 	ui.setupUi(this);
 
-	CardPackage* cp = QYXCQEngine->getCardPack();
+    CardPackage* cp = new CardPackage();
 	int cardcount = cp->getAllCount();
 	ui.tableWidget->setRowCount(cardcount);
 	QStringList columns;

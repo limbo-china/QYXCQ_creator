@@ -2,6 +2,8 @@ Qt Creator调试器和编译器和qt版本需要对应，才能配置。例：De
 
 ## 2018-01-16 ##
 
+在.pro文件有修改后(新建的新类，新cpp/h文件，新的资源文件),需要先执行qmake
+
 - GameCore::generatePlayerBoard
 
 在QMainWindow动态创建widget，若使centralwidget成为其父widget，会出现各种奇怪问题。widget可能不显示。
@@ -40,3 +42,14 @@ w->setPos(x,y), 把w本地坐标系的原点放在父坐标系的x,y点。
 QGraphicsItem不能使用slot,signal机制，可以使用其子类QGraphicsObject, 几乎和QGraphicsItem一样，只是允许使用slot,signal机制
 
 必须先重写mousePressEvent事件，mouseReleaseEvent事件才会响应
+
+- CustomLabel::setText()
+
+update(rect)函数用于重绘，此函数在被调用之后，会自动调用本类的paint()绘制函数
+
+## 2018-01-22 ##
+
+- gamecore.h gamescene.h
+
+两个头文件（类）互相引用，会出现“缺少类型说明符”错误，需要加入前置声明
+

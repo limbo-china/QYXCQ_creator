@@ -23,10 +23,11 @@ SOURCES += main.cpp\
     carditem.cpp \
     card.cpp \
     cardoverviewdialog.cpp \
-    engine.cpp \
     package.cpp \
     startdialog.cpp \
-    custombutton.cpp
+    custombutton.cpp \
+    customlabel.cpp \
+    gamescene.cpp
 
 HEADERS  += qyxcq.h \
     gamecore.h \
@@ -39,10 +40,11 @@ HEADERS  += qyxcq.h \
     carditem.h \
     card.h \
     cardoverviewdialog.h \
-    engine.h \
     package.h \
     startdialog.h \
-    custombutton.h
+    custombutton.h \
+    customlabel.h \
+    gamescene.h
 
 FORMS    += qyxcq.ui \
     cardOverView.ui \

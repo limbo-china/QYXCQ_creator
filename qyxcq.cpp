@@ -1,8 +1,8 @@
 #include "QYXCQ.h"
-#include "engine.h"
 
 #include "carditem.h"
 #include "package.h"
+#include "gamescene.h"
 
 QYXCQ* QYXCQWindow = NULL;
 
@@ -39,32 +39,21 @@ void QYXCQ::gameSceneInit(){
     qreal height = 1080*0.9;
 
     gameview->setSceneRect(-width/2,-height/2,width,height);
-    gamescene = new QGraphicsScene();
+    gamescene = new GameScene();
     gameview->setScene(gamescene);
     setCentralWidget(gameview);
-    dashboard1 = new DashBoard();
-    dashboard2 = new DashBoard();
-    //dashboard->setPos(0,rt.height()-dashboard->boundingRect().height());
-    dashboard1->setPos(0,(height-220)/2);
-    dashboard2->setPos(0,(220-height)/2);
-    gamescene->addItem(dashboard1);
-    gamescene->addItem(dashboard2);
 
 }
-void QYXCQ::addPlayersToBoard(QList<Player* >& players){
+void QYXCQ::startGame(QString character){
 
-    dashboard1->setPlayer(players[0]);
-    dashboard2->setPlayer(players[1]);
+    gameSceneInit();
+
+    gamescene->gamecore = new GameCore();
+    gamescene->gamecore->startGameCore(character);
+
+    gamescene->addPlayersToBoard(gamescene->gamecore->getPlayers());
+    gamescene->cardInit();
 }
-
-void QYXCQ::dealCardInit(){
-
-    foreach(Card* c, dashboard1->player()->m_cards)
-        dashboard1->addOneCardItem(c);
-    foreach(Card* c, dashboard2->player()->m_cards)
-        dashboard2->addOneCardItem(c);
-}
-
 void QYXCQ::tri_startAction(){
 
 	startDialog = new StartDialog(this);

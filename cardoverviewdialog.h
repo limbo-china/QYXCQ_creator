@@ -3,6 +3,7 @@
 
 #include "QtHeader.h"
 #include "ui_cardOverView.h"
+#include "package.h"
 
 class CardOverViewDialog : public QDialog{
 

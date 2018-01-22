@@ -1,12 +1,13 @@
 #include "gamecore.h"
 #include "QYXCQ.h"
-#include "Engine.h"
+#include "gamescene.h"
 #include <iostream>
 using namespace std;
 
 
 GameCore::GameCore(int players){
 
+    setParent(QYXCQWindow->gamescene);
 	CardPackage* cardpackage = new CardPackage();
 
     foreach(Card* c, cardpackage->cards)
@@ -18,7 +19,7 @@ GameCore::GameCore(int players){
 	playernum = players;
 
 }
-void GameCore::startGame(QString character){
+void GameCore::startGameCore(QString character){
 
 	for (int i = 0; i < playernum; i++)
 	{
@@ -30,10 +31,11 @@ void GameCore::startGame(QString character){
     dealCards();
 
 }
+
 void GameCore::shuffleCards(){
 
 	shuffleDiscarded(discardedcards);
-	//cout << discardedcards.length();
+
 	while (!discardedcards.isEmpty()){
 		remaincards << discardedcards.first();
 		discardedcards.pop_front();
@@ -56,7 +58,7 @@ Card* GameCore::getTopCardFromRemain(){
 	Card* c = remaincards.first();
 	remaincards.pop_front();
 
-    //QYXCQEngine->updateRemainDiscard();
+    static_cast<GameScene*>(parent())->updateRemainLabel();
 
 	return c;
 }
