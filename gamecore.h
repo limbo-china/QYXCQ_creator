@@ -28,8 +28,6 @@ private:
 	int playernum;
 	QList<Player* > players;
 	
-
-
 };
 
 

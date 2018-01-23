@@ -49,10 +49,9 @@ void QYXCQ::startGame(QString character){
     gameSceneInit();
 
     gamescene->gamecore = new GameCore();
-    gamescene->gamecore->startGameCore(character);
-
     gamescene->addPlayersToBoard(gamescene->gamecore->getPlayers());
-    gamescene->cardInit();
+
+    gamescene->gamecore->startGameCore(character);
 }
 void QYXCQ::tri_startAction(){
 

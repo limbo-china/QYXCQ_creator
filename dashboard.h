@@ -17,23 +17,26 @@ public:
 
     DashBoard();
     QRectF boundingRect() const;
-    void addOneCardItem(Card* c);
+
     Player* player(){ return m_player;}
     void setPlayer(Player* p){ m_player = p;}
-    void removeACardItem(int i);
+    void playCardOut();
+
 
     void paint(QPainter* painter,const QStyleOptionGraphicsItem *option, QWidget * widget = 0);
 
 private:
 
     Player* m_player;
-    QList<QGraphicsItem* > m_carditems;
+    QList<CardItem* > m_carditems;
     CustomButton* okButton;
     CustomButton* cancelButton;
     CustomLabel* bloodLabel;
     CustomLabel* cardnumLabel;
 
-private slots:
+public slots:
+    void addOneCardItem(Card*);
+    void removeACardItem(int);
 
     void on_okButton_clicked();
 };

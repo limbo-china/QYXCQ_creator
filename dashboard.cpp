@@ -44,12 +44,12 @@ void DashBoard::removeACardItem(int i){
 
     cardnumLabel->setText(QString::number(m_carditems.length()));
 }
+void DashBoard::playCardOut(){
 
-void DashBoard::on_okButton_clicked(){
-
+    foreach(CardItem* ci, m_carditems)
+        qDebug() << ci->isSelected();
     for(int i=0;i<m_carditems.length();i++)
         if(m_carditems[i]->isSelected()){
-            removeACardItem(i);
             m_player->playOutOneCard(i);
             i--;
         }
@@ -59,4 +59,10 @@ void DashBoard::on_okButton_clicked(){
          m_carditems[i]->setPos(boundingRect().x()+m_carditems[i]->boundingRect().width()*(0.5+i),0);
 
     static_cast<GameScene*>(scene())->updateDiscardedLabel();
+    update();
+}
+
+void DashBoard::on_okButton_clicked(){
+
+     playCardOut();
 }

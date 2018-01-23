@@ -2,8 +2,14 @@
 
 CardItem::CardItem(Card* c, QGraphicsItem* parent):QGraphicsObject(parent), m_card(c)
 {
+        setAcceptHoverEvents(true);
         setFlag(GraphicsItemFlag::ItemIsSelectable);
         setSelected(false);
+        isHovered = false;
+
+        QString name = m_card->getName()+"_"+m_card->getSuit()+m_card->getPoint();
+        m_image.load( "./image/"+name+".png" );
+
         connect(this, SIGNAL(clicked()), this, SLOT(on_clicked()));
 }
 
@@ -16,13 +22,16 @@ QRectF CardItem::boundingRect() const{
 }
 void CardItem::paint(QPainter* painter, const QStyleOptionGraphicsItem *option, QWidget * widget ){
 
-    //painter->fillRect(boundingRect() ,Qt::GlobalColor::red);
+    painter->drawImage(QRectF(boundingRect().x()+2,boundingRect().y()+2,
+                              boundingRect().width()-4,boundingRect().height()-4), m_image);
 
-    QImage image;
-    QString name = m_card->getName()+"_"+m_card->getSuit()+m_card->getPoint();
-    image.load( "./image/"+name+".png" );
+    if(isHovered){
+        painter->setOpacity(1);
+        painter->setPen(QPen(Qt::red, 5));
+        painter->drawRoundedRect(boundingRect(),15,15);
+    }
 
-    painter->drawImage(boundingRect(), image);
+
 }
 
 void CardItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
@@ -33,6 +42,16 @@ void CardItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
 }
 void CardItem::mousePressEvent(QGraphicsSceneMouseEvent *event){
 
+}
+void CardItem::hoverEnterEvent(QGraphicsSceneHoverEvent *event){
+
+    isHovered = true;
+    update();
+}
+void CardItem::hoverLeaveEvent(QGraphicsSceneHoverEvent *event){
+
+    isHovered = false;
+    update();
 }
 
 void CardItem::on_clicked(){

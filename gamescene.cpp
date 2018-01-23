@@ -18,20 +18,23 @@ GameScene::GameScene()
     discardedlabel->setPos(0,discardedlabel->boundingRect().height()+10);
     addItem(remainlabel);
     addItem(discardedlabel);
+
+    connect(this, SIGNAL(rightClicked()), this, SLOT(on_rightClicked()));
 }
 void GameScene::addPlayersToBoard(QList<Player* >& players){
 
     dashboard1->setPlayer(players[0]);
+    connect(players[0],SIGNAL(aCardIn(Card*)), dashboard1, SLOT(addOneCardItem(Card*)));
+    connect(players[0],SIGNAL(aCardOut(int)), dashboard1, SLOT(removeACardItem(int)));
     dashboard2->setPlayer(players[1]);
+    connect(players[1],SIGNAL(aCardIn(Card*)), dashboard2, SLOT(addOneCardItem(Card*)));
+    connect(players[1],SIGNAL(aCardOut(int)), dashboard2, SLOT(removeACardItem(int)));
+}
+void GameScene::contextMenuEvent(QGraphicsSceneContextMenuEvent *contextMenuEvent){
+
+    //emit rightClicked();
 }
 
-void GameScene::cardInit(){
-
-    foreach(Card* c, dashboard1->player()->m_cards)
-        dashboard1->addOneCardItem(c);
-    foreach(Card* c, dashboard2->player()->m_cards)
-        dashboard2->addOneCardItem(c);
-}
 void GameScene::updateRemainLabel(){
 
     remainlabel->setText(QString::number(gamecore->remaincards.length()));
@@ -39,4 +42,12 @@ void GameScene::updateRemainLabel(){
 
 void GameScene::updateDiscardedLabel(){
     discardedlabel->setText(QString::number(gamecore->discardedcards.length()));
+}
+void GameScene::on_rightClicked(){
+
+    qDebug() << 1;
+    //dashboard1->playCardOut();
+    QList<QGraphicsItem *> si = selectedItems();
+    foreach(QGraphicsItem* ci, si)
+        qDebug() << ci->isSelected();
 }

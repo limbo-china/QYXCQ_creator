@@ -41,7 +41,7 @@ w->setPos(x,y), 把w本地坐标系的原点放在父坐标系的x,y点。
 
 QGraphicsItem不能使用slot,signal机制，可以使用其子类QGraphicsObject, 几乎和QGraphicsItem一样，只是允许使用slot,signal机制
 
-必须先重写mousePressEvent事件，mouseReleaseEvent事件才会响应
+必须先重写mousePressEvent事件，mouseReleaseEvent事件（包括其他按下鼠标键后的事件，如松开鼠标，按着鼠标移动）才会响应
 
 - CustomLabel::setText()
 
@@ -53,3 +53,12 @@ update(rect)函数用于重绘，此函数在被调用之后，会自动调用�
 
 两个头文件（类）互相引用，会出现“缺少类型说明符”错误，需要加入前置声明
 
+## 2018-01-23 ##
+
+- CardItem::CardItem
+
+QGraphicsItem在相应isSelected()和鼠标hover等事件前，要先打开开关。如setFlag(),setAcceptHoverEvents()等
+
+QT不像MFC在什么时间都可以绘图，使用QPainter画图，要重写paint()虚函数，在里面进行绘图。如果要在其他地方绘制图形，可以绘制到QImage或者QPixmap上面，然后在其他地方调用update()函数
+
+slots和signals的声明和connect里的要完全一致对应（只写类型不写参数名），否则报no such signal错误

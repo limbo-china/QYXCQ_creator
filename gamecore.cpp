@@ -5,7 +5,7 @@
 using namespace std;
 
 
-GameCore::GameCore(int players){
+GameCore::GameCore(int _players){
 
     setParent(QYXCQWindow->gamescene);
 	CardPackage* cardpackage = new CardPackage();
@@ -16,16 +16,15 @@ GameCore::GameCore(int players){
 //		discardedcards << cardpackage->cards[i];
 //	}
 
-	playernum = players;
+    playernum = _players;
+    for (int i = 0; i < playernum; i++)
+    {
+        Player* player = new Player(i+1/*character*/);
+        players << player;
+    }
 
 }
 void GameCore::startGameCore(QString character){
-
-	for (int i = 0; i < playernum; i++)
-	{
-		Player* player = new Player(i+1/*character*/);
-		players << player;
-	}
 
     shuffleCards();
     dealCards();

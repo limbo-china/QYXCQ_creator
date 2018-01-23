@@ -8,9 +8,9 @@
 class DashBoard;
 class GameScene : public QGraphicsScene
 {
+    Q_OBJECT
 public:
     GameScene();
-    void cardInit();
     void addPlayersToBoard(QList<Player* >&);
     void updateRemainLabel();
     void updateDiscardedLabel();
@@ -21,6 +21,12 @@ public:
     CustomLabel* discardedlabel;
 
     GameCore* gamecore;
+signals:
+    void rightClicked();
+protected:
+    virtual void contextMenuEvent(QGraphicsSceneContextMenuEvent *contextMenuEvent);
+private slots:
+    void on_rightClicked();
 };
 
 #endif // GAMESCENE_H
