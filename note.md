@@ -59,6 +59,27 @@ update(rect)函数用于重绘，此函数在被调用之后，会自动调用�
 
 QGraphicsItem在相应isSelected()和鼠标hover等事件前，要先打开开关。如setFlag(),setAcceptHoverEvents()等
 
-QT不像MFC在什么时间都可以绘图，使用QPainter画图，要重写paint()虚函数，在里面进行绘图。如果要在其他地方绘制图形，可以绘制到QImage或者QPixmap上面，然后在其他地方调用update()函数
+QT不像MFC在什么时间都可以绘图，使用QPainter画图，要重写paint()虚函数，在里面进行绘图。如果要在其他地方绘制图形，可以绘制到QImage或者QPixmap上面，然后在其他地方调用update()函数（自动调用paint()函数）
 
 slots和signals的声明和connect里的要完全一致对应（只写类型不写参数名），否则报no such signal错误
+
+## 2018-01-24 ##
+
+在tr()翻译的类里面需要加上Q_OBJECT
+
+- carditem.h
+
+QGraphicsItem自带的isSelected()方法，在点击本item外部的位置时，isSelected()会自动置false, 所以自定义了private变量selected并重写了isSelected()方法来控制
+
+- GameScene::contextMenuEvent
+
+static_cast和dynamic_cast: 在无法进行类转换时（两类完全不相关），static_cast转换结果依然为原类；而dynamic_cast的转换结果则为0(null)
+
+- audio.cpp
+
+QString 中包含中文时转化为const char *， 可以用iostream：
+<code>
+std::string str = filename.toStdString();
+
+const char* ch = str.c_str();
+<code>
