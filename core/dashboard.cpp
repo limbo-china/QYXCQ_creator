@@ -25,7 +25,10 @@ QRectF DashBoard::boundingRect() const{
 }
 void DashBoard::paint(QPainter* painter, const QStyleOptionGraphicsItem *option, QWidget * widget ){
 
-    painter->fillRect(boundingRect() ,Qt::GlobalColor::yellow);
+    QImage image;
+    image.load("./background/dashboard.png");
+    painter->drawImage(boundingRect() , image);
+
 }
 void DashBoard::setPlayer(Player* p){
 
@@ -88,9 +91,9 @@ void DashBoard::on_selectChange(){
         if(ci->isSelected())
             count++;
 
-//    if(count == 1)
-//        okButton->enable();
-//    else
-//        okButton->disable();
+    if(count == 1)
+        okButton->enable();
+    else
+        okButton->disable();
 
 }

@@ -3,7 +3,11 @@
 GameScene::GameScene()
 {
     qreal height = 1080*0.9;
-    qreal width = 1880;
+    qreal width = 1900;
+
+    QGraphicsPixmapItem* gpi=  addPixmap(QPixmap("./background/background-1.jpg"));
+    gpi->setOffset(-width/2,-height/2);
+
 
     dashboard1 = new DashBoard();
     dashboard2 = new DashBoard();
