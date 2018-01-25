@@ -3,6 +3,7 @@
 
 #include "core/QtHeader.h"
 #include "card.h"
+#include "general.h"
 
 
 class Package : public QObject{
@@ -13,7 +14,7 @@ class Package : public QObject{
 public:
 
 	enum Type{
-		general, cardtype /*not named 'Card' to aviod conflicting with class 'Card' */
+        generaltype, cardtype /*not named 'Card' to aviod conflicting with class 'Card' */
 	};
 
 	Package();
@@ -48,6 +49,7 @@ class GeneralPackage :public Package{
 
 public:
 	GeneralPackage();
+    QList<General* > generals;
 
 };
 

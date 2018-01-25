@@ -19,8 +19,10 @@ public:
     QRectF boundingRect() const;
 
     Player* player(){ return m_player;}
-    void setPlayer(Player* p){ m_player = p;}
-
+    CustomButton* getOKButton(){return okButton;}
+    void updateCardNumLabel();
+    void updateBloodLabel();
+    void setPlayer(Player*);
     void paint(QPainter* painter,const QStyleOptionGraphicsItem *option, QWidget * widget = 0);
 
 private:

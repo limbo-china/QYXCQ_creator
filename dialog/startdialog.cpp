@@ -14,7 +14,7 @@ StartDialog::StartDialog(QWidget *parent)
 
 	for (int i = 0; i < buttons.length(); i++)
 	{
-		mapper->setMapping(buttons[i], QString::number(i));
+        mapper->setMapping(buttons[i], "yuji");
 		connect(buttons[i], SIGNAL(clicked()), mapper, SLOT(map()));
 		connect(buttons[i], SIGNAL(clicked()), this, SLOT(accept()));
 	}

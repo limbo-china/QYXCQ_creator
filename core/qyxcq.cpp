@@ -3,6 +3,7 @@
 #include "ui/carditem.h"
 #include "package/package.h"
 #include "gamescene.h"
+#include "audio.h"
 
 QYXCQ* QYXCQWindow = NULL;
 
@@ -25,6 +26,8 @@ QYXCQ::QYXCQ(QWidget *parent)
 	helpMenu = menuBar()->addMenu(tr("Help"));
 	helpMenu->addAction(cardOverViewAction);
 
+    g_audio = new Audio();
+    g_audio->init();
 
 }
 QYXCQ::~QYXCQ()
@@ -33,6 +36,7 @@ QYXCQ::~QYXCQ()
 }
 void QYXCQ::gameSceneInit(){
 
+    g_audio->playBGM("./sound/background.ogg");
     gameview = new QGraphicsView();
 
     qreal width = 1920*0.9;
@@ -48,10 +52,10 @@ void QYXCQ::startGame(QString character){
 
     gameSceneInit();
 
-    gamescene->gamecore = new GameCore();
+    gamescene->gamecore = new GameCore(gamescene,character);
     gamescene->addPlayersToBoard(gamescene->gamecore->getPlayers());
 
-    gamescene->gamecore->startGameCore(character);
+    gamescene->gamecore->startGameCore();
 }
 void QYXCQ::tri_startAction(){
 

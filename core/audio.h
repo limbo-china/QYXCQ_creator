@@ -7,9 +7,18 @@
 class Audio
 {
 public:
-    Audio();
-    void playSound(QString filename);
+    static void init();
+    static void quit();
 
+    static void play(const QString &filename, bool superpose = true);
+    static void stop();
+
+    static void playBGM(const QString &filename);
+    static void setBGMVolume(float volume);
+    static void stopBGM();
+
+    static QString getVersion();
 };
 
+extern Audio* g_audio;
 #endif // AUDIO_H

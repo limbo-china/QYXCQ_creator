@@ -5,7 +5,7 @@ CustomButton::CustomButton(QString name, QGraphicsItem* parent):QGraphicsObject(
     setAcceptHoverEvents(true);
 
     isHovered = false;
-    isEnabled = false;
+    _enabled = false;
     m_name = name;
     m_image.load( "./button/"+m_name+"_gray.png" );
 
@@ -32,7 +32,7 @@ void CustomButton::paint(QPainter* painter, const QStyleOptionGraphicsItem *opti
 
 void CustomButton::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
 
-    if(isEnabled)
+    if(_enabled)
         emit clicked();
 }
 void CustomButton::mousePressEvent(QGraphicsSceneMouseEvent *event){
@@ -40,7 +40,7 @@ void CustomButton::mousePressEvent(QGraphicsSceneMouseEvent *event){
 }
 void CustomButton::hoverEnterEvent(QGraphicsSceneHoverEvent *event){
 
-    if(isEnabled){
+    if(_enabled){
         isHovered = true;
         setCursor(Qt::PointingHandCursor);
         update();
@@ -49,7 +49,7 @@ void CustomButton::hoverEnterEvent(QGraphicsSceneHoverEvent *event){
 }
 void CustomButton::hoverLeaveEvent(QGraphicsSceneHoverEvent *event){
 
-    if(isEnabled){
+    if(_enabled){
         isHovered = false;
         setCursor(Qt::ArrowCursor);
         update();
@@ -57,13 +57,13 @@ void CustomButton::hoverLeaveEvent(QGraphicsSceneHoverEvent *event){
 }
 void CustomButton::enable(){
 
-    isEnabled = true;
+    _enabled = true;
      m_image.load( "./button/"+m_name+"_lighted.png" );
      update();
 }
 void CustomButton::disable(){
 
-    isEnabled = false;
+    _enabled = false;
      m_image.load( "./button/"+m_name+"_gray.png" );
      update();
 }

@@ -1,32 +1,132 @@
 #include "audio.h"
-#include <iostream>
 
-Audio::Audio()
+class Sound;
+
+static FMOD_SYSTEM *System;
+static QCache<QString, Sound> SoundCache;
+static FMOD_SOUND *BGM;
+static FMOD_CHANNEL *BGMChannel;
+
+Audio* g_audio = NULL ;
+
+class Sound
 {
+public:
+    Sound(const QString &filename) : sound(NULL), channel(NULL)
+    {
+        FMOD_System_CreateSound(System, filename.toLatin1(), FMOD_DEFAULT, NULL, &sound);
+    }
+
+    ~Sound()
+    {
+        if (sound) FMOD_Sound_Release(sound);
+    }
+
+    void play()
+    {
+        if (sound) {
+            FMOD_RESULT result = FMOD_System_PlaySound(System, sound, /*FMOD_CHANNEL_FREE*/NULL, false, &channel); //2018-01-08
+
+            if (result == FMOD_OK) {
+                FMOD_Channel_SetVolume(channel, 2.0);
+                FMOD_System_Update(System);
+            }
+        }
+    }
+
+    bool isPlaying() const
+    {
+        if (channel == NULL) return false;
+
+        FMOD_BOOL is_playing = false;
+        FMOD_Channel_IsPlaying(channel, &is_playing);
+        return is_playing;
+    }
+
+private:
+    FMOD_SOUND *sound;
+    FMOD_CHANNEL *channel;
+};
+
+void Audio::init()
+{
+    FMOD_RESULT result = FMOD_System_Create(&System);
+    if (result == FMOD_OK) FMOD_System_Init(System, 100, 0, NULL);
 }
-void Audio::playSound(QString filename){
 
-    FMOD_SYSTEM *system;
-    FMOD_SOUND  *sound1;
-    FMOD_CHANNEL *channel1;
+void Audio::quit()
+{
+    if (System) {
+        SoundCache.clear();
+        FMOD_System_Release(System);
 
-    FMOD_RESULT result = FMOD_System_Create(&system);
+        System = NULL;
+    }
+}
 
-    if (result == FMOD_OK) result = FMOD_System_Init(system, 100, 0, NULL);
+void Audio::play(const QString &filename, bool superpose)
+{
+    Sound *sound = SoundCache[filename];
+    if (sound == NULL) {
+        sound = new Sound(filename);
+        SoundCache.insert(filename, sound);
+    } else if (!superpose && sound->isPlaying()) {
+        return;
+    }
 
-    filename = "./sound/"+filename+".ogg";
-    std::string str = filename.toStdString();
-    const char* s = str.c_str();
+    sound->play();
+}
 
-    qDebug() << result;
-    result = FMOD_System_CreateSound(system, "./sound/slash.ogg", FMOD_DEFAULT, NULL, &sound1);
-    qDebug() << result;
-    result = FMOD_System_PlaySound(system, sound1, NULL, false, &channel1);
+void Audio::stop()
+{
+    if (System == NULL) return;
+
+    int n;
+    FMOD_System_GetChannelsPlaying(System, &n, &n); //2018-01-08
+
+    QList<FMOD_CHANNEL *> channels;
+    for (int i = 0; i < n; i++) {
+        FMOD_CHANNEL *channel;
+        FMOD_RESULT result = FMOD_System_GetChannel(System, i, &channel);
+        if (result == FMOD_OK) channels << channel;
+    }
+
+    foreach (FMOD_CHANNEL *channel, channels)
+        FMOD_Channel_Stop(channel);
+
+    stopBGM();
+
+    FMOD_System_Update(System);
+}
+
+void Audio::playBGM(const QString &filename)
+{
+    FMOD_RESULT result = FMOD_System_CreateStream(System, filename.toLocal8Bit(), FMOD_LOOP_NORMAL, NULL, &BGM);
 
     if (result == FMOD_OK) {
+        FMOD_Sound_SetLoopCount(BGM, -1);
+        FMOD_System_PlaySound(System, BGM, NULL /*FMOD_CHANNEL_FREE*/, false, &BGMChannel);//2018-01-08
 
-                   FMOD_Channel_SetVolume(channel1, 20);
-                    FMOD_System_Update(system);
+        FMOD_System_Update(System);
     }
-    FMOD_System_Release(system);
+}
+
+void Audio::setBGMVolume(float volume)
+{
+    if (BGMChannel) FMOD_Channel_SetVolume(BGMChannel, volume);
+}
+
+void Audio::stopBGM()
+{
+    if (BGMChannel) FMOD_Channel_Stop(BGMChannel);
+}
+
+QString Audio::getVersion()
+{
+    unsigned int version = 0;
+    FMOD_System_GetVersion(System, &version);
+    // convert it to QString
+    return QString("%1.%2.%3").arg((version & 0xFFFF0000) >> 16, 0, 16)
+        .arg((version & 0xFF00) >> 8, 2, 16, QChar('0'))
+        .arg((version & 0xFF), 2, 16, QChar('0'));
 }

@@ -3,6 +3,8 @@
 
 #include "QtHeader.h"
 #include "package/card.h"
+#include "audio.h"
+#include "package/general.h"
 
 
 class Player :public QObject{
@@ -11,18 +13,14 @@ class Player :public QObject{
 
 public:
 
-	Player(int n/*QString character*/);
+    Player(General*);
 
-	//ui
-//	QListWidget* m_cardcontainer;
-//	QPushButton* okbutton;
-//	QPushButton* cancelbutton;
-
-	int getBlood(){ return m_blood; }
 	int getCardsNum() { return m_cards.length(); }
     void getOneCard(Card*);
 	void playOutOneCard(int r);
     QList<Card* > m_cards;
+    General* getGeneral(){return m_general;}
+    int getBlood(){return m_blood;}
 
 signals:
     void aCardOut(int);
@@ -30,8 +28,8 @@ signals:
 
 private:
 
-	//Genenal m_general;
-	int m_blood;
+      int m_blood;
+      General* m_general;
 
 //    private slots:
 //    void itemSelectChange();

@@ -3,14 +3,23 @@
 GameScene::GameScene()
 {
     qreal height = 1080*0.9;
+    qreal width = 1880;
 
     dashboard1 = new DashBoard();
     dashboard2 = new DashBoard();
     //dashboard->setPos(0,rt.height()-dashboard->boundingRect().height());
-    dashboard1->setPos(0,(height-220)/2);
-    dashboard2->setPos(0,(220-height)/2);
+    dashboard1->setPos(200,(height-220)/2);
+    dashboard2->setPos(200,(220-height)/2);
     addItem(dashboard1);
     addItem(dashboard2);
+
+    //add general item
+    gi1 = new GeneralItem();
+    gi2 = new GeneralItem();
+    gi1->setPos(-width/2+gi1->boundingRect().width()/2, (height-220)/2);
+    gi2->setPos(-width/2+gi2->boundingRect().width()/2, (220-height)/2);
+    addItem(gi1);
+    addItem(gi2);
 
     remainlabel = new CustomLabel("0");
     remainlabel->setPos(0,-remainlabel->boundingRect().height()-10);
@@ -24,21 +33,21 @@ GameScene::GameScene()
 void GameScene::addPlayersToBoard(QList<Player* >& players){
 
     dashboard1->setPlayer(players[0]);
-    connect(players[0],SIGNAL(aCardIn(Card*)), dashboard1, SLOT(addOneCardItem(Card*)));
-    connect(players[0],SIGNAL(aCardOut(int)), dashboard1, SLOT(removeACardItem(int)));
     dashboard2->setPlayer(players[1]);
-    connect(players[1],SIGNAL(aCardIn(Card*)), dashboard2, SLOT(addOneCardItem(Card*)));
-    connect(players[1],SIGNAL(aCardOut(int)), dashboard2, SLOT(removeACardItem(int)));
-}
-void GameScene::contextMenuEvent(QGraphicsSceneContextMenuEvent *contextMenuEvent){
 
-    QTransform tf;
-    QGraphicsItem* ci =itemAt(contextMenuEvent->scenePos(),tf);
-
-    if(dynamic_cast<CardItem*>(ci))
-        dynamic_cast<CardItem*>(ci)->setSelected(!dynamic_cast<CardItem*>(ci)->isSelected());
-    emit rightClicked();
 }
+//void GameScene::contextMenuEvent(QGraphicsSceneContextMenuEvent *contextMenuEvent){
+
+//    if(dashboard1->getOKButton()->isEnabled()){
+//        QTransform tf;
+//        QGraphicsItem* ci =itemAt(contextMenuEvent->scenePos(),tf);
+
+//        if(dynamic_cast<CardItem*>(ci))
+//            dynamic_cast<CardItem*>(ci)->setSelected(!dynamic_cast<CardItem*>(ci)->isSelected());
+
+//        emit rightClicked();
+//    }
+//}
 
 void GameScene::updateRemainLabel(){
 

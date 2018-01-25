@@ -4,8 +4,10 @@
 #include "ui/customlabel.h"
 #include "dashboard.h"
 #include "gamecore.h"
+#include "ui/generalitem.h"
 
 class DashBoard;
+class GameCore;
 class GameScene : public QGraphicsScene
 {
     Q_OBJECT
@@ -17,6 +19,9 @@ public:
     DashBoard* dashboard1;
     DashBoard* dashboard2;
 
+    GeneralItem* gi1;
+    GeneralItem* gi2;
+
     CustomLabel* remainlabel;
     CustomLabel* discardedlabel;
 
@@ -24,7 +29,7 @@ public:
 signals:
     void rightClicked();
 protected:
-    virtual void contextMenuEvent(QGraphicsSceneContextMenuEvent *contextMenuEvent);
+    //virtual void contextMenuEvent(QGraphicsSceneContextMenuEvent *contextMenuEvent);
 };
 
 #endif // GAMESCENE_H

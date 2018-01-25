@@ -14,6 +14,7 @@ public:
 
     void enable();
     void disable();
+    bool isEnabled(){return _enabled;}
 
     QRectF boundingRect() const;
     void paint(QPainter* painter,const QStyleOptionGraphicsItem *option, QWidget * widget = 0);
@@ -29,7 +30,7 @@ private:
 
     QImage m_image;
     bool isHovered;
-    bool isEnabled;
+    bool _enabled;
     QString m_name;
 
 signals:

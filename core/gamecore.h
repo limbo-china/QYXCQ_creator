@@ -4,6 +4,10 @@
 #include "QtHeader.h"
 #include "player.h"
 #include "package/package.h"
+#include "gamescene.h"
+#include "package/general.h"
+
+class GameScene;
 
 class GameCore :public QObject{
 
@@ -11,8 +15,8 @@ class GameCore :public QObject{
 
 public:
 
-	GameCore(int players = 2);
-    void startGameCore(QString character);
+    GameCore(GameScene*, QString, int players = 2);
+    void startGameCore();
 	void shuffleCards();
 	void dealCards();
     QList<Player* >& getPlayers(){return players;}

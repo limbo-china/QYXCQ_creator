@@ -136,3 +136,10 @@ int CardPackage::getAllCount(){
 
 //	return cards[n];
 //}
+
+GeneralPackage::GeneralPackage() : Package(generaltype){
+
+    generals
+            << new General("yuji",3)
+            << new General("xiangyu",4);
+}
