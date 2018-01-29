@@ -23,7 +23,7 @@ public:
 
 	QList<Card* > remaincards;
 	QList<Card* > discardedcards;
-	Card* getTopCardFromRemain();
+    Card* getTopCardFromRemain();
 
 private:
 

@@ -1,6 +1,8 @@
 #ifndef CARD_H
 #define CARD_H
 #include "core/QtHeader.h"
+//#include "core/player.h"
+//#include "core/QYXCQ.h"
 
 //static QList<QString> cards;
 //static QList<QString> suits;
@@ -35,6 +37,8 @@ public:
 	QString getPoint();
     void setNumber(int n){ m_number = n;}
     int getNumber(){ return m_number; }
+
+    //void onUse(Player* ) ;
 protected:
     QString m_engtype;
 private:

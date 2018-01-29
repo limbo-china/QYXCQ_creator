@@ -24,6 +24,8 @@ void Player::playOutOneCard(int r){
 
     g_audio->play("./sound/"+filename+".ogg",true);
 
+
+    //m_cards[r]->onUse(this);
     discard << m_cards[r];
     m_cards.removeAt(r);
 

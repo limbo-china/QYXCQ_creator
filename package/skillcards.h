@@ -26,6 +26,8 @@ class Wuzhong : public SkillCard
     Q_OBJECT
 public:
     Wuzhong(QString suit, QString p);
+
+    //void onUse(Player* );
 };
 class Jiedao : public SkillCard
 {

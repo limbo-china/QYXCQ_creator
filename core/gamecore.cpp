@@ -50,7 +50,7 @@ void GameCore::dealCards(){
 	
 	for (int i = 0; i < playernum; i++)
 		for (int j = 0; j < 5; j++)
-			players[i]->getOneCard(getTopCardFromRemain());
+            players[i]->getOneCard(getTopCardFromRemain());
 
 }
 
@@ -60,7 +60,7 @@ Card* GameCore::getTopCardFromRemain(){
 	if (remaincards.isEmpty())
 		shuffleCards();
 	Card* c = remaincards.first();
-	remaincards.pop_front();
+    remaincards.pop_front();
 
     static_cast<GameScene*>(parent())->updateRemainLabel();
 

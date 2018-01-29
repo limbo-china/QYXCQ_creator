@@ -36,7 +36,9 @@ SOURCES += core/dashboard.cpp \
     package/equipcards.cpp \
     core/audio.cpp \
     package/general.cpp \
-    ui/generalitem.cpp
+    ui/generalitem.cpp \
+    ui/clickableitem.cpp \
+    ui/selectableitem.cpp
 
 HEADERS  += core/dashboard.h \
     core/gamecore.h \
@@ -63,7 +65,9 @@ HEADERS  += core/dashboard.h \
     inc/fmod_output.h \
     core/audio.h \
     package/general.h \
-    ui/generalitem.h
+    ui/generalitem.h \
+    ui/clickableitem.h \
+    ui/selectableitem.h
 
 FORMS    += qyxcq.ui \
     cardOverView.ui \

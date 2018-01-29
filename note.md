@@ -82,4 +82,8 @@ QString 中包含中文时转化为const char *， 可以用iostream：
 std::string str = filename.toStdString();
 
 const char* ch = str.c_str();
-<code>
+</code>
+
+## 2018-01-29 ##
+
+用connect的类中需要加上Q_OBJECT，否则会报错: no such slot

@@ -30,6 +30,9 @@ QString Card::getEngName(){
     else
         return "";
 }
+//void Card::onUse(Player* p){
+
+//}
 
 //void CardInfo::init(){
 //

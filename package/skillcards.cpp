@@ -12,6 +12,12 @@ Tannang::Tannang(QString suit, QString p): SkillCard(tr("tannang"), suit, p){
 Wuzhong::Wuzhong(QString suit, QString p): SkillCard(tr("wuzhong"), suit, p){
     m_engskill = "wuzhong";
 }
+//void Wuzhong::onUse(Player* p){
+
+//    p->getOneCard(QYXCQWindow->gamescene->gamecore->getTopCardFromRemain());
+//    p->getOneCard(QYXCQWindow->gamescene->gamecore->getTopCardFromRemain());
+//}
+
 Jiedao::Jiedao(QString suit, QString p): SkillCard(tr("jiedao"), suit, p){
     m_engskill = "jiedao";
 }

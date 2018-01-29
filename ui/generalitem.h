@@ -4,18 +4,23 @@
 #include "core/QtHeader.h"
 #include "package/general.h"
 #include "core/player.h"
+#include "selectableitem.h"
 
-class GeneralItem : public QGraphicsObject
+class GeneralItem : public SelectableItem
 {
+    Q_OBJECT
 public:
     GeneralItem(Player* p = NULL, QGraphicsItem* parent = Q_NULLPTR);
 
     QRectF boundingRect() const;
-    void paint(QPainter* painter,const QStyleOptionGraphicsItem *option, QWidget * widget = 0);
+    void loadImage();
     void setPlayer(Player* p);
 
+private slots:
+
+    void on_clicked();
+
 private:
-    QImage m_image;
     Player* m_player;
 };
 

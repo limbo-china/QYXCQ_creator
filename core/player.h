@@ -6,7 +6,6 @@
 #include "audio.h"
 #include "package/general.h"
 
-
 class Player :public QObject{
 
 	Q_OBJECT
